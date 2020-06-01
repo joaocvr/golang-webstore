@@ -9,10 +9,6 @@ import (
 
 var templates = template.Must(template.ParseGlob("templates/*.html"))
 
-func LoadRoutes() {
-	http.HandleFunc("/", index)
-}
-
 func Index(w http.ResponseWriter, r *http.Request) {
 	allProducts := models.SearchAllProducts()
 	templates.ExecuteTemplate(w, "Index", allProducts)
