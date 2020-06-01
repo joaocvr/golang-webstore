@@ -46,4 +46,5 @@ func SearchAllProducts() []Product {
 	}
 
 	defer db.Close()
+	return products
 }
