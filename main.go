@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/joaocvr/routes"
+	"github.com/joaocvr/golang-webstore/routes"
 )
 
 func main() {

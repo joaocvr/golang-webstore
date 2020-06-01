@@ -3,7 +3,7 @@ package routes
 import (
 	"net/http"
 
-	"github.com/joaocvr/controllers"
+	"github.com/joaocvr/golang-webstore/controllers"
 )
 
 func LoadRoutes() {
