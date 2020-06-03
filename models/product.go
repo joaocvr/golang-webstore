@@ -1,8 +1,6 @@
 package models
 
 import (
-	"fmt"
-
 	"github.com/joaocvr/golang-webstore/db"
 )
 
@@ -21,7 +19,6 @@ func SearchAllProducts() []Product {
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Println(result)
 
 	p := Product{}
 	products := []Product{}
@@ -47,4 +44,30 @@ func SearchAllProducts() []Product {
 
 	defer db.Close()
 	return products
+}
+
+func CreateNewProduct(newProduct Product) {
+	db := db.ConnectDB()
+
+	insertNewProduct, err := db.Prepare("insert into products (name, description, price, stock) values ($1, $2, $3, $4)")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	insertNewProduct.Exec(newProduct.Name, newProduct.Description, newProduct.Price, newProduct.Stock)
+
+	defer db.Close()
+}
+
+func DeleteProduct(id int) {
+	db := db.ConnectDB()
+
+	delete, err := db.Prepare("delete from products where id = $1")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	delete.Exec(id)
+
+	defer db.Close()
 }
